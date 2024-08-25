@@ -1,45 +1,44 @@
-import java.util.Scanner;
+mport java.util.Scanner;
 
-class Main {
-    static String calculator(String input) {
-        String[] parts = input.split(" ");
-        if (parts.length != 3) {
-            return "throws Exception";
-        }
+public class calc{
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+
         try {
+            String[] parts = input.split(" ");
+            if (parts.length != 3) {
+                throw new IllegalArgumentException("Не соответствут требованиям задачи");
+            }
             int num1 = Integer.parseInt(parts[0]);
             int num2 = Integer.parseInt(parts[2]);
-            char x = parts[1].charAt(0);
-            int res;
-            if (num1 < 1 || num1 > 10 || num2 < 1 || num2 > 10) {
-                return "throws Exception";
+
+            if ((num1 < 1 || num1 > 10) || (num2 < 1 || num2 > 10)) {
+                throw new IllegalArgumentException("Не соответствут требованиям задачи");
             }
-            switch (x) {
-                case '+':
-                    res = num1 + num2;
+            int result;
+            switch (parts[1]) {
+                case "+":
+                    result = num1 + num2;
                     break;
-                case '-':
-                    res = num1 - num2;
+                case "-":
+                    result = num1 - num2;
                     break;
-                case '*':
-                    res = num1 * num2;
+                case "*":
+                    result = num1 * num2;
                     break;
-                case '/':
-                    res = num1 / num2;
+                case "/":
+                    result = num1 / num2;
                     break;
                 default:
-                    return "throws Exception";
+                    throw new IllegalArgumentException("Не соответствут требованиям задачи");
             }
-            return String.valueOf(res);
+            System.out.println(result);
         } catch (NumberFormatException e) {
-            return "throws Exception";
+            System.err.println("Ошибка");
+        } catch (IllegalArgumentException e) {
+            System.err.println("Ошибка: "+ e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        scanner.close();
-        System.out.println(calculator(input));
     }
 }
