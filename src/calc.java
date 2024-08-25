@@ -36,7 +36,7 @@ public class calc{
             }
             System.out.println(result);
         } catch (NumberFormatException e) {
-            System.err.println("Ошибка");
+            System.err.println("Ошибка: "+ e.getMessage());
         } catch (IllegalArgumentException e) {
             System.err.println("Ошибка: "+ e.getMessage());
         }
